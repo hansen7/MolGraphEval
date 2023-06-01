@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg version="1.1" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns="http://www.w3.org/2000/svg" xmlns:xl="http://www.w3.org/1999/xlink" viewBox="463 165 245 463" width="245" height="463">
+  <defs>
+    <font-face font-family="CMU Concrete" font-size="16" panose-1="2 0 6 3 0 0 0 0 0 0" units-per-em="1000" underline-position="-125" underline-thickness="49.80469" slope="0" x-height="461.91406" cap-height="688.4766" ascent="922.8516" descent="-360.35156" font-weight="500">
+      <font-face-src>
+        <font-face-name name="CMUConcrete-Roman"/>
+      </font-face-src>
+    </font-face>
+    <marker orient="auto" overflow="visible" markerUnits="strokeWidth" id="FilledArrow_Marker" stroke-linejoin="miter" stroke-miterlimit="10" viewBox="-1 -3 6 6" markerWidth="6" markerHeight="6" color="black">
+      <g>
+        <path d="M 3.7333333 0 L 0 -1.4 L 0 1.4 Z" fill="currentColor" stroke="currentColor" stroke-width="1"/>
+      </g>
+    </marker>
+    <font-face font-family="CMU Serif" font-size="16" panose-1="2 0 6 3 0 0 0 0 0 0" units-per-em="1000" underline-position="-125" underline-thickness="49.80469" slope="0" x-height="439.4531" cap-height="693.84766" ascent="935.0586" descent="-372.5586" font-weight="500">
+      <font-face-src>
+        <font-face-name name="CMUSerif-Roman"/>
+      </font-face-src>
+    </font-face>
+  </defs>
+  <metadata> Produced by OmniGraffle 7.18.5\n2021-09-03 12:12:02 +0000</metadata>
+  <g id="Canvas_1" fill="none" stroke="none" stroke-opacity="1" stroke-dasharray="none" fill-opacity="1">
+    <title>Canvas 1</title>
+    <rect fill="white" x="463" y="165" width="245" height="463"/>
+    <g id="Canvas_1_Layer_1">
+      <title>Layer 1</title>
+      <g id="Graphic_2">
+        <rect x="464.5" y="237" width="242" height="64" fill="white"/>
+        <rect x="464.5" y="237" width="242" height="64" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <text transform="translate(469.5 258.5)" fill="black">
+          <tspan font-family="CMU Concrete" font-size="16" font-weight="500" fill="black" x="48.11719" y="15">run_pretraining.py</tspan>
+        </text>
+      </g>
+      <g id="Graphic_3">
+        <rect x="464.5" y="364.5" width="242" height="64" fill="white"/>
+        <rect x="464.5" y="364.5" width="242" height="64" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <text transform="translate(469.5 386)" fill="black">
+          <tspan font-family="CMU Concrete" font-size="16" font-weight="500" fill="black" x="7.324219" y="15">run_embedding_extraction.py</tspan>
+        </text>
+      </g>
+      <g id="Graphic_4">
+        <rect x="464.5" y="492" width="242" height="64" fill="white"/>
+        <rect x="464.5" y="492" width="242" height="64" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        <text transform="translate(469.5 513.5)" fill="black">
+          <tspan font-family="CMU Concrete" font-size="16" font-weight="500" fill="black" x="52.20703" y="15">run_validation.py</tspan>
+        </text>
+      </g>
+      <g id="Line_5">
+        <line x1="585.5" y1="302" x2="585.5" y2="347.6" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+      <g id="Line_6">
+        <line x1="585.5" y1="429.5" x2="585.5" y2="475.1" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+      <g id="Graphic_7">
+        <text transform="translate(562.85156 170)" fill="black">
+          <tspan font-family="CMU Serif" font-size="16" font-weight="500" fill="black" x="0" y="15">Config</tspan>
+        </text>
+      </g>
+      <g id="Line_8">
+        <line x1="585.5" y1="196" x2="585.5" y2="220.1" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+      <g id="Graphic_9">
+        <text transform="translate(469.5 323.526)" fill="black">
+          <tspan font-family="CMU Serif" font-size="16" font-weight="500" fill="black" x="0" y="15">Saved model</tspan>
+        </text>
+      </g>
+      <g id="Graphic_10">
+        <text transform="translate(469.5 449.75)" fill="black">
+          <tspan font-family="CMU Serif" font-size="16" font-weight="500" fill="black" x="0" y="15">Saved embeds.</tspan>
+        </text>
+      </g>
+      <g id="Graphic_12">
+        <text transform="translate(560.0117 602)" fill="black">
+          <tspan font-family="CMU Serif" font-size="16" font-weight="500" fill="black" x="0" y="15">Results</tspan>
+        </text>
+      </g>
+      <g id="Line_13">
+        <line x1="585.5" y1="557" x2="585.5" y2="581.1" marker-end="url(#FilledArrow_Marker)" stroke="black" stroke-linecap="round" stroke-linejoin="round" stroke-width="3"/>
+      </g>
+      <g id="Graphic_14">
+        <text transform="translate(469.948 242)" fill="black">
+          <tspan font-family="CMU Concrete" font-size="16" font-weight="500" fill="black" x="0" y="15">1</tspan>
+        </text>
+      </g>
+      <g id="Graphic_15">
+        <text transform="translate(469.5 369.5)" fill="black">
+          <tspan font-family="CMU Concrete" font-size="16" font-weight="500" fill="black" x="0" y="15">2</tspan>
+        </text>
+      </g>
+      <g id="Graphic_16">
+        <text transform="translate(469.5 497)" fill="black">
+          <tspan font-family="CMU Concrete" font-size="16" font-weight="500" fill="black" x="0" y="15">3</tspan>
+        </text>
+      </g>
+    </g>
+  </g>
+</svg>

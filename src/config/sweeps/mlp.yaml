@@ -1,0 +1,18 @@
+# see https://docs.wandb.ai/guides/sweeps/configuration for more infos
+method: grid
+metric:
+  name: val_loss
+  goal: minimize
+parameters:
+  mlp_dim_hidden:
+    values:
+      - 128
+      - 256
+      - 512
+      - 1024
+  mlp_num_layers:
+    values:
+      - 1
+      - 2
+      - 4
+program: run_validation.py
