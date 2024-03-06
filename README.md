@@ -15,4 +15,7 @@ This repository is the official implementation of paper: "**Evaluating Self-supe
 ```
 
 ### Usage
-We include scripts for pre-training, probing and fine-tuning for GraphSSL on molecules, see <a href="script/"> script</a> folder.
+We include scripts for pre-training, probing and fine-tuning for GraphSSL on molecules, see <a href="script/">script</a> folder. We use conda to set up the environment:
+```bash
+conda env create -f env.yaml
+```
