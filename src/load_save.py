@@ -1,19 +1,12 @@
-import pickle as pkl
-from pathlib import Path
-from typing import List
-
-import torch
-from torch_geometric.data.dataset import Dataset
+import torch, pickle
 from tqdm import tqdm
-
+from typing import List
+from pathlib import Path
+from torch_geometric.data.dataset import Dataset
 from config.training_config import TrainingConfig
 from config.validation_config import ValidationConfig
 from models.pre_trainer_model import PreTrainerModel
-
-try:
-    from torch_geometric.data.dataloader import DataLoader
-except ModuleNotFoundError:
-    from torch_geometric.loader.dataloader import DataLoader
+from torch_geometric.loader.dataloader import DataLoader
 
 
 def infer_and_save_embeddings(
@@ -85,7 +78,7 @@ def save_embeddings(
 ):
     Path(config.embedding_dir).mkdir(parents=True, exist_ok=True)
     with open(f"{config.embedding_dir}{config.dataset}_{split}.pkl", "wb") as f:
-        pkl.dump([graph_embeddings, node_embeddings, smiles], f)
+        pickle.dump([graph_embeddings, node_embeddings, smiles], f)
 
 
 def save_model(config: TrainingConfig, model: torch.nn.Module, epoch: int) -> None:

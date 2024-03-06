@@ -1,7 +1,5 @@
+import torch, numpy as np
 from itertools import repeat
-
-import numpy as np
-import torch
 from torch_geometric.data import Data
 from torch_geometric.utils import subgraph, to_networkx
 
@@ -9,7 +7,6 @@ from .molecule_datasets import MoleculeDataset
 
 
 class MoleculeDataset_GraphCL(MoleculeDataset):
-
     # used in GraphCL, JOAOv1, JOAOv2
     def __init__(
         self,
@@ -20,7 +17,6 @@ class MoleculeDataset_GraphCL(MoleculeDataset):
         dataset=None,
         empty=False,
     ):
-
         self.aug_prob = None
         self.aug_mode = "no_aug"
         self.aug_strength = 0.2
@@ -45,7 +41,6 @@ class MoleculeDataset_GraphCL(MoleculeDataset):
         self.aug_prob = aug_prob
 
     def node_drop(self, data):
-
         node_num, _ = data.x.size()
         _, edge_num = data.edge_index.size()
         drop_num = int(node_num * self.aug_strength)
@@ -103,7 +98,6 @@ class MoleculeDataset_GraphCL(MoleculeDataset):
         return data
 
     def attr_mask(self, data):
-
         _x = data.x.clone()
         node_num, _ = data.x.size()
         mask_num = int(node_num * self.aug_strength)
@@ -116,7 +110,6 @@ class MoleculeDataset_GraphCL(MoleculeDataset):
         return data
 
     def subgraph(self, data):
-
         G = to_networkx(data)
         node_num, _ = data.x.size()
         _, edge_num = data.edge_index.size()

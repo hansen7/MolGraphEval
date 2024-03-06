@@ -1,11 +1,6 @@
+import wandb, torch, random, warnings, numpy as np, pandas as pd, torch.nn as nn
+warnings.filterwarnings("ignore", category=UserWarning)
 from typing import Dict, List, Optional, Tuple, Union
-import wandb
-import torch
-import random
-import numpy as np
-import pandas as pd
-import torch.nn as nn
-from torch.backends import cudnn as cudnn
 from torch_geometric.loader import DataLoader
 
 from config import Config
@@ -68,7 +63,8 @@ from pretrainers import (
 )
 from splitters import random_scaffold_split, random_split, scaffold_split
 from util import ExtractSubstructureContextPair, MaskAtom, NegativeEdge
-from validation.metrics.smoothing_metric import MeanAverageDistance
+
+# from validation.metrics.smoothing_metric import MeanAverageDistance
 from validation.dataset import ProberDataset
 from validation.task import Task
 from validation.task.graph_level import (
@@ -147,8 +143,8 @@ def init(config: Config) -> None:
 def get_device(config: Config) -> Optional[torch.device]:
     if not config.no_cuda and torch.cuda.is_available():
         device = torch.device(f"cuda:{config.device}")
-        cudnn.deterministic = True
-        cudnn.benchmark = True
+        torch.backends.cudnn.deterministic = True
+        torch.backends.cudnn.benchmark = True
         return device
     return torch.device("cpu")
 
@@ -209,7 +205,6 @@ def get_smiles_list(config: Config) -> List[str]:
 
 
 def get_dataset(config: Union[TrainingConfig, ValidationConfig]) -> MoleculeDataset:
-
     if "geom" in config.dataset:
         root = join(ROOT, f"data/GEOM/{config.dataset}/")
     else:
@@ -290,7 +285,6 @@ def get_dataset(config: Union[TrainingConfig, ValidationConfig]) -> MoleculeData
 def get_dataset_extraction(
     config: Union[TrainingConfig, ValidationConfig]
 ) -> MoleculeDataset:
-
     root: str = f"./data/molecule_datasets/{config.dataset}/"
     return MoleculeDataset(root=root, dataset=config.dataset)
 
@@ -450,7 +444,6 @@ def get_optimizer(
 def get_prober_dataset(
     config: ValidationConfig,
 ) -> Tuple[ProberDataset, ProberDataset, ProberDataset, str]:
-
     criterion_type = "mse"  # default type
 
     # === Node Metric ===
@@ -524,46 +517,15 @@ def get_prober_dataset(
 def get_finetune_dataset(
     config: ValidationConfig,
 ) -> Tuple[MoleculeDataset, MoleculeDataset, MoleculeDataset, str]:
-
     criterion_type = "mse"  # default type
 
     # # === Node Metric ===
-    # if config.probe_task == "node_degree":
-    #     data_cls = NodeDegreeDataset
-    #     # criterion_type = "ce"  # num_class: 11
-    # elif config.probe_task == "node_centrality":
-    #     data_cls = NodeCentralityDataset
-    # elif config.probe_task == "node_clustering":
-    #     data_cls = NodeClusteringDataset
 
     # # === Pair Metric ===
-    # elif config.probe_task == "link_prediction":
-    #     data_cls = LinkPredictionDataset
-    #     criterion_type = "bce"
-    # elif config.probe_task == "jaccard_coefficient":
-    #     data_cls = JaccardCoefficientDataset
-    # elif config.probe_task == "katz_index":
-    #     data_cls = KatzIndexDataset
 
     # # === Graph Metric ===
-    # elif config.probe_task == "graph_diameter":
-    #     data_cls = GraphDiameterDataset
-    # # elif config.probe_task == "graph_edit_distance":
-    # #     data_cls = GraphEditDistanceDataset
-    # #     criterion_type = 'mse'
-    # elif config.probe_task == "node_connectivity":
-    #     data_cls = NodeConnectivityDataset
-    # elif config.probe_task == "cycle_basis":
-    #     data_cls = CycleBasisDataset
-    #     # criterion_type = "ce"
-    # elif config.probe_task == "assortativity_coefficient":
-    #     data_cls = AssortativityCoefficientDataset
-    # elif config.probe_task == "average_clustering_coefficient":
-    #     data_cls = AverageClusteringCoefficientDataset
 
     # # === Substructure Metric ===
-    # elif "RDKiTFragment_" in config.probe_task:
-    #     data_cls = RDKiTFragmentDataset
 
     # === Downstream Tasks ===
     if config.probe_task == "downstream":
@@ -584,36 +546,14 @@ def get_finetune_dataset(
     else:
         raise NotImplementedError
 
-    # MoleculeDataset(root=root, dataset=config.dataset)
-    # train_dataset = data_cls(
-    #     f"{config.embedding_dir}{config.dataset}_train.pkl",
-    #     config,
-    #     "train",
-    #     des=config.probe_task.replace("RDKiTFragment_", ""),
-    # ).create_datasets()
-    # val_dataset = data_cls(
-    #     f"{config.embedding_dir}{config.dataset}_valid.pkl",
-    #     config,
-    #     "val",
-    #     des=config.probe_task.replace("RDKiTFragment_", ""),
-    # ).create_datasets()
-    # test_dataset = data_cls(
-    #     f"{config.embedding_dir}{config.dataset}_test.pkl",
-    #     config,
-    #     "test",
-    #     des=config.probe_task.replace("RDKiTFragment_", ""),
-    # ).create_datasets()
 
-    # return train_dataset, val_dataset, test_dataset, criterion_type
-
-
-def calculate_smoothing_metric(config):
-    train_path = f"{config.embedding_dir}{config.dataset}_train.pkl"
-    valid_path = f"{config.embedding_dir}{config.dataset}_valid.pkl"
-    test_path = f"{config.embedding_dir}{config.dataset}_test.pkl"
-    for idx, path in enumerate([train_path, valid_path, test_path]):
-        metric = MeanAverageDistance(path, config, idx)
-        metric.calculate_metric()
+# def calculate_smoothing_metric(config):
+#     train_path = f"{config.embedding_dir}{config.dataset}_train.pkl"
+#     valid_path = f"{config.embedding_dir}{config.dataset}_valid.pkl"
+#     test_path = f"{config.embedding_dir}{config.dataset}_test.pkl"
+#     for idx, path in enumerate([train_path, valid_path, test_path]):
+#         metric = MeanAverageDistance(path, config, idx)
+#         metric.calculate_metric()
 
 
 def get_dataset_split(

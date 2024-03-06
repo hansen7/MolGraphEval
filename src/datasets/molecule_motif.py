@@ -1,11 +1,9 @@
-import os
+import os, torch, numpy as np
+from tqdm import tqdm
 from itertools import repeat
-
-import numpy as np
-import torch
 from descriptastorus.descriptors import rdDescriptors
 from torch_geometric.data import Data, InMemoryDataset
-from tqdm import tqdm
+
 
 RDKIT_PROPS = [
     "fr_Al_COO",

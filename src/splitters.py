@@ -1,9 +1,7 @@
-import random
-from collections import defaultdict
-from itertools import compress
+import torch, random, numpy as np
 
-import numpy as np
-import torch
+from itertools import compress
+from collections import defaultdict
 from rdkit.Chem.Scaffolds import MurckoScaffold
 from sklearn.model_selection import StratifiedKFold
 
@@ -15,12 +13,6 @@ def generate_scaffold(smiles, include_chirality=False):
         smiles=smiles, includeChirality=include_chirality
     )
     return scaffold
-
-
-# # test generate_scaffold
-# s = 'Cc1cc(Oc2nccc(CCC)c2)ccc1'
-# scaffold = generate_scaffold(s)
-# assert scaffold == 'c1ccc(Oc2ccccn2)cc1'
 
 
 def scaffold_split(

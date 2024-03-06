@@ -65,7 +65,6 @@ class ContextPredictionPreTrainer(PreTrainer):
         #        contextpred_acc_accum / len(train_data_loader)
 
     def do_ContextPred(self, batch: Batch):
-
         # creating substructure representation
         substruct_repr = self.model.forward_substruct_model(
             x=batch.x_substruct,

@@ -31,7 +31,6 @@ class GraphMVPModel(PreTrainerModel):
         self.pool: Callable = global_mean_pool
 
     def forward(self, batch: Batch) -> List[Tensor]:
-
         # x, edge_index, edge_attr, positions, batch_assignments = batch.x, batch.edg
         repr_node = self.gnn(batch.x, batch.edge_index, batch.edge_attr)
         repr_2d = self.pool(repr_node, batch.batch)
@@ -40,7 +39,6 @@ class GraphMVPModel(PreTrainerModel):
         return repr_2d, repr_3d
 
     def loss(self, repr_2d: Tensor, repr_3d: Tensor) -> Tensor:
-
         CL_loss, _ = dual_CL(repr_2d, repr_3d, self.config)
         AE_loss_1 = self.ae2d3d(repr_2d, repr_3d)
         AE_loss_2 = self.ae3d2d(repr_3d, repr_2d)

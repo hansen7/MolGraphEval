@@ -1,14 +1,8 @@
-# Ref:
-#  https://raw.githubusercontent.com/davda54/sam/main/example/utility/log.py
+# Ref: https://raw.githubusercontent.com/davda54/sam/main/example/utility/log.py
 
-import dataclasses
-import logging
-import time
-from datetime import datetime, timedelta
-from logging import Logger
+import time, wandb, logging, dataclasses
 from pathlib import Path
-
-import wandb
+from datetime import datetime, timedelta
 from config.training_config import TrainingConfig
 
 TIME_STR = "{:%Y_%m_%d_%H_%M_%S_%f}".format(datetime.now())
@@ -70,7 +64,7 @@ class LogFormatter:
         return "%s - %s" % (prefix, message)
 
 
-def create_info_logger(filepath) -> Logger:
+def create_info_logger(filepath) -> logging.Logger:
     """
     Create a logger.
     """
@@ -118,7 +112,7 @@ class CombinedLogger:
     best_val_accuracy: float = 0.0
     epoch: int = -1
     step: int = 0
-    info_logger: Logger = None
+    info_logger: logging.Logger = None
 
     def __post_init__(self):
         self.info_logger = create_info_logger(
@@ -127,7 +121,6 @@ class CombinedLogger:
 
     def log_value_dict(self, value_dict: dict):
         if self.config.log_to_wandb:
-
             wandb.log(
                 {
                     "epoch": self.epoch,
@@ -154,7 +147,6 @@ class CombinedLogger:
     def __call__(
         self, loss, accuracy, batch_size: int, learning_rate: float = None
     ) -> None:
-
         # TODO: in training, we don't have to record the accuracy
         if self.is_train:
             self._train_step(loss, accuracy, batch_size, learning_rate)
@@ -165,7 +157,6 @@ class CombinedLogger:
         loss = self.epoch_state.loss / self.num_batches
         accuracy = self.epoch_state.accuracy / self.epoch_state.samples
         if self.is_train:
-
             print(
                 f"\r┃{self.epoch:12d}  ┃{loss:12.4f}  │{100 * accuracy:10.2f} %  ┃{self.learning_rate:12.3e}  │{self._time():>12}  ┃",
                 end="",

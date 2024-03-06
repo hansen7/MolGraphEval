@@ -1,9 +1,7 @@
-import random
-
-import torch
-from torch_geometric.data import Data, InMemoryDataset
-from torch_geometric.utils import subgraph
+import torch, random
 from tqdm import tqdm
+from torch_geometric.utils import subgraph
+from torch_geometric.data import Data, InMemoryDataset
 
 
 def search_graph(graph):

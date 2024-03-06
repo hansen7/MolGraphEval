@@ -31,7 +31,6 @@ class GraphMVPPreTrainer(PreTrainer):
         self.logger.train(num_batches=len(train_data_loader))
 
         for step, batch in enumerate(train_data_loader):
-
             batch = batch.to(self.device)
             repr_2d, repr_3d = self.model(batch)
             loss = self.model.loss(repr_2d, repr_3d)

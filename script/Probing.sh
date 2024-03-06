@@ -5,7 +5,8 @@ export PreTrainer=AM # or others
 export PreTrainData=zinc_standard_agent # or others
 export EmbeddingDir="./embedding_dir/$PreTrainer/$PreTrainData/"
 export Checkpoint="./pretrain_models/$PreTrainer/$PreTrainData/epoch99_model_complete.pth"
-# for random baselines, set the checkpoint as epoch0_model_complete.pth
+# for AM, the default path of checkpoint is "./pretrain_models/$PreTrainer/$PreTrainData/mask_rate-0.15_seed-42_lr-0.001/epoch0_model_complete.pth"
+# for the random baseline, just set the checkpoint as epoch0_model_complete.pth
 
 export FineTuneData_List=(bbbp tox21 toxcast sider clintox muv hiv bace)
 
@@ -55,4 +56,3 @@ for Substructure in "${Substructure_List[@]}"; do
             --probe_task="RDKiTFragment_$Substructure" ;
     done
 done >> Substructure_Probe_${PreTrainer}_${PreTrainData}.log
-

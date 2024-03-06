@@ -2,6 +2,8 @@ import torch
 
 from config.training_config import TrainingConfig, parse_config
 from datasets import MoleculeDataset
+from logger import CombinedLogger
+from load_save import save_model
 from init import (
     get_data_loader,
     get_dataset,
@@ -11,8 +13,6 @@ from init import (
     get_pretrainer,
     init,
 )
-from load_save import save_model
-from logger import CombinedLogger
 
 
 def pretrain_model(
@@ -21,7 +21,6 @@ def pretrain_model(
     model: torch.nn.Module,
     device: torch.device,
 ) -> None:
-
     """=== Generic Pre-Training Wrapper ==="""
     logger = CombinedLogger(config=config)
     optimizer = get_optimizer(config=config, model=model)

@@ -1,5 +1,9 @@
-
-analysis/*.pdf
+data/
+wandb/
+analysis/
+pretrain_models/
+.vscode/
+embedding_dir/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

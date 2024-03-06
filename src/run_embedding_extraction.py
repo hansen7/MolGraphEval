@@ -1,3 +1,4 @@
+from load_save import infer_and_save_embeddings, load_checkpoint
 from config.validation_config import parse_config
 from init import (
     get_data_loader_val,
@@ -8,9 +9,6 @@ from init import (
     get_smiles_list,
     init,
 )
-from load_save import infer_and_save_embeddings, load_checkpoint
-
-# from validation.task import Task
 
 
 def main() -> None:

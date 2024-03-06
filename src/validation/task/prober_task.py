@@ -97,7 +97,6 @@ class ProberTask(TrainValTestTask):
         total_loss = 0
 
         for _, batch in enumerate(self.train_loader):
-
             if self.config.probe_task == "downstream":
                 pred = self.model(batch["representation"].to(self.device))
                 y = batch["label"].to(torch.float32).to(self.device)
@@ -131,7 +130,6 @@ class ProberTask(TrainValTestTask):
         return total_loss / len(self.train_loader)
 
     def train_finetune_step(self) -> float:
-
         self.model.train()
         total_loss = 0
 
@@ -174,12 +172,10 @@ class ProberTask(TrainValTestTask):
         return self.criterion(y_pred, y_true).item()
 
     def _eval_roc(self, loader: DataLoader) -> float:
-
         self.model.eval()
         y_true, y_pred = [], []
 
         for _, batch in enumerate(loader):
-
             with torch.no_grad():
                 if self.config.val_task == "prober":
                     inputs = batch["representation"].to(self.device)

@@ -7,7 +7,6 @@ from .molecule_datasets import MoleculeDataset
 
 
 def drop_nodes_prob(data, aug_ratio, node_score):
-
     node_num, _ = data.x.size()
     _, edge_num = data.edge_index.size()
     drop_num = int(node_num * aug_ratio)
@@ -45,7 +44,6 @@ def drop_nodes_prob(data, aug_ratio, node_score):
 
 
 def drop_nodes_cp(data, aug_ratio, node_score):
-
     node_num, _ = data.x.size()
     _, edge_num = data.edge_index.size()
     drop_num = int(node_num * aug_ratio)
@@ -83,7 +81,6 @@ def drop_nodes_cp(data, aug_ratio, node_score):
 
 
 def subgraph_prob(data, aug_ratio, node_score):
-
     node_num, _ = data.x.size()
     _, edge_num = data.edge_index.size()
     sub_num = int(node_num * aug_ratio)
@@ -147,7 +144,6 @@ def subgraph_prob(data, aug_ratio, node_score):
 
 
 def subgraph_cp(data, aug_ratio, node_score):
-
     node_num, _ = data.x.size()
     _, edge_num = data.edge_index.size()
     sub_num = int(node_num * aug_ratio)
@@ -223,7 +219,6 @@ class MoleculeDataset_RGCL(MoleculeDataset):
         aug="none",
         aug_ratio=None,
     ):
-
         self.aug = aug
         self.aug_ratio = aug_ratio
         # self.augmentations = [

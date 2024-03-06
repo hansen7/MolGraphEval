@@ -1,18 +1,9 @@
 # ref: github.com/snap-stanford/pretrain-gnns/blob/master/chems/loader.py
-import json
-import os
-import pickle
-import random
-import sys
-from itertools import chain, repeat
-from os.path import join, abspath, dirname
-import shutil
-import numpy as np
-import pandas as pd
-import torch
-from rdkit import Chem, RDLogger
-from rdkit.Chem import AllChem, Descriptors
+import os, sys, json, torch, random, pickle, shutil, numpy as np, pandas as pd
 from torch_geometric.data import Data, InMemoryDataset
+from os.path import join, abspath, dirname
+from rdkit.Chem import AllChem, Descriptors
+from itertools import chain, repeat
 from tqdm import tqdm
 
 try:
@@ -56,7 +47,6 @@ class MoleculeDataset(InMemoryDataset):
         pre_filter=None,
         empty=False,
     ):
-
         self.root = root
         self.empty = empty
         self.dataset = dataset
@@ -832,7 +822,6 @@ class GEOMDataset(InMemoryDataset):
             random.shuffle(drugs_summary)
             mol_idx, idx, notfound = 0, 0, 0
             for smiles, sub_dic in tqdm(drugs_summary):
-
                 """path should match"""
                 if sub_dic.get("pickle_path", "") == "":
                     notfound += 1
@@ -863,14 +852,14 @@ class GEOMDataset(InMemoryDataset):
                     # https://github.com/learningmatter-mit/geom/issues/4#issuecomment-853486681
                     # https://github.com/learningmatter-mit/geom/blob/master/tutorials/02_loading_rdkit_mols.ipynb
                     conf_list = [
-                        Chem.MolToSmiles(
-                            Chem.MolFromSmiles(Chem.MolToSmiles(rd_mol["rd_mol"]))
+                        AllChem.MolToSmiles(
+                            AllChem.MolFromSmiles(AllChem.MolToSmiles(rd_mol["rd_mol"]))
                         )
                         for rd_mol in conformer_list[: self.n_conf]
                     ]
 
                     conf_list_raw = [
-                        Chem.MolToSmiles(rd_mol["rd_mol"])
+                        AllChem.MolToSmiles(rd_mol["rd_mol"])
                         for rd_mol in conformer_list[: self.n_conf]
                     ]
                     # check that they're all the same
@@ -961,7 +950,6 @@ class GEOMDataset(InMemoryDataset):
 
 
 if __name__ == "__main__":
-
     """=== Process downstream datasets ==="""
     # regression datasets: esol, freesolv, lipophilicity,
     # classification datasets that have [-1, 0, 1]: muv, tox21, toxcast, others are binary

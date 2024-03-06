@@ -18,8 +18,8 @@ class Molecule3DDataset(InMemoryDataset):
         pre_filter=None,
         empty=False,
     ):
-        self.dataset = dataset
         self.root = root
+        self.dataset = dataset
 
         super(Molecule3DDataset, self).__init__(
             root, transform, pre_transform, pre_filter
@@ -148,7 +148,6 @@ class Molecule3DMaskingDataset(InMemoryDataset):
 
 
 if __name__ == "__main__":
-
     dataset = "geom3d_nmol500000_nconf1"
     root = join("~/GraphEval_dev/data/GEOM", dataset)
     dataset = Molecule3DDataset(root, dataset=dataset)

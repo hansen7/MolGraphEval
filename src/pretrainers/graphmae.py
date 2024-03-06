@@ -39,7 +39,6 @@ class GraphMAEPreTrainer(PreTrainer):
         assert len(self.optimizer) == 2
 
     def train_for_one_epoch(self, train_data_loader: DataLoader) -> float:
-
         train_loss_accum = 0
         self.model.train()
         self.logger.train(num_batches=len(train_data_loader))

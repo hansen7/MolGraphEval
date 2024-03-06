@@ -1,6 +1,5 @@
 from config.validation_config import parse_config
-from init import get_device, get_task, init
-from validation.task import Task
+from init import get_task, init
 
 
 def main() -> None:

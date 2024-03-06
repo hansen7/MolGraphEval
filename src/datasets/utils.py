@@ -1,13 +1,9 @@
-import pickle
-from collections import Counter
-from multiprocessing import Pool
-
-import networkx as nx
-import numpy as np
-import torch
-from rdkit import Chem
-from rdkit.Chem import AllChem
+import torch, pickle, numpy as np, networkx as nx
 from torch_geometric.data import Data
+from multiprocessing import Pool
+from collections import Counter
+from rdkit.Chem import AllChem
+from rdkit import Chem
 from tqdm import tqdm
 
 # allowable node and edge features, used in molecule_datasets.py

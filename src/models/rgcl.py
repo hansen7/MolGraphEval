@@ -79,7 +79,6 @@ class RGCLModel(PreTrainerModel):
         return loss
 
     def loss_ra(self, x1, x2, x3, temp=0.1, lamda=0.1):
-
         batch_size, _ = x1.size()
         x1_abs = x1.norm(dim=1)
         x2_abs = x2.norm(dim=1)

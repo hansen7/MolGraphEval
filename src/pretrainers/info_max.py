@@ -81,7 +81,6 @@ def do_InfoGraph(
     criterion: torch.nn.Module,
     model: InfoMaxModel,
 ):
-
     summary_repr = torch.sigmoid(molecule_repr)
     positive_expanded_summary_repr = summary_repr[batch.batch]
     shifted_summary_repr = summary_repr[cycle_idx(len(summary_repr), 1)]

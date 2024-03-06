@@ -19,7 +19,6 @@ from util import get_lr
 
 
 def do_EdgePred(node_repr, batch, criterion):
-
     # positive/negative scores -> inner product of node features
     positive_score = torch.sum(
         node_repr[batch.edge_index[0, ::2]] * node_repr[batch.edge_index[1, ::2]], dim=1

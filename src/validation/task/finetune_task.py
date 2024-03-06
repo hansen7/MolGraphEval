@@ -108,12 +108,10 @@ class ProberTask(TrainValTestTask):
         return total_val_loss
 
     def _eval_roc(self, loader: DataLoader) -> float:
-
         self.model.eval()
         y_true, y_pred = [], []
 
         for _, batch in enumerate(loader):
-
             with torch.no_grad():
                 if self.config.val_task == "prober":
                     inputs = batch["representation"].to(self.device)

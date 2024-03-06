@@ -1,14 +1,10 @@
-import json
-import os
-import pickle
-from itertools import repeat
+import os, json, torch, pickle
 
-import torch
-from os.path import join, abspath, dirname
-from rdkit import Chem
-from torch_geometric.data import Data, InMemoryDataset
 from tqdm import tqdm
-
+from rdkit import Chem
+from itertools import repeat
+from os.path import join, abspath, dirname, exists
+from torch_geometric.data import Data, InMemoryDataset
 from .utils import MolVocab, atom_to_vocab, bond_to_vocab
 
 BASE_ROOT = dirname(dirname(dirname(abspath(__file__))))
@@ -80,15 +76,13 @@ class MoleculeDataset_Contextual(InMemoryDataset):
         """ === Extract bond vocabulary === """
         self.bond_vocab_file = "{}_vocab.pkl".format("bond")
         self.bond_vocab_label_file = "{}_vocab_label.json".format("bond")
-        self.bond_vocab_save_path = os.path.join(
-            self.root, "processed", self.bond_vocab_file
-        )
-        self.bond_vocab_label_save_path = os.path.join(
+        self.bond_vocab_save_path = join(self.root, "processed", self.bond_vocab_file)
+        self.bond_vocab_label_save_path = join(
             self.root, "processed", self.bond_vocab_label_file
         )
         if not (
-            os.path.exists(self.bond_vocab_save_path)
-            and os.path.exists(self.bond_vocab_label_save_path)
+            exists(self.bond_vocab_save_path)
+            and exists(self.bond_vocab_label_save_path)
         ):
             if self.molecule_list is None:
                 if "geom" in self.dataset:
@@ -137,7 +131,7 @@ class MoleculeDataset_Contextual(InMemoryDataset):
         return molecule_list
 
     def process_contextual_vocab(self, vocab_type, vocab_save_path):
-        if os.path.exists(vocab_save_path):
+        if exists(vocab_save_path):
             print("Loading from vocab_save_path\t", vocab_save_path)
             vocab = MolVocab.load_vocab(vocab_save_path)
             return vocab
@@ -155,7 +149,7 @@ class MoleculeDataset_Contextual(InMemoryDataset):
         return vocab
 
     def process_atom_contextual_label_with_vocab(self):
-        if os.path.exists(self.atom_vocab_label_save_path):
+        if exists(self.atom_vocab_label_save_path):
             print(
                 "Loading from atom_vocab_label_save_path\t",
                 self.atom_vocab_label_save_path,
@@ -188,7 +182,7 @@ class MoleculeDataset_Contextual(InMemoryDataset):
         return atom2vocab_label
 
     def process_bond_contextual_label_with_vocab(self):
-        if os.path.exists(self.bond_vocab_label_save_path):
+        if exists(self.bond_vocab_label_save_path):
             print(
                 "Loading from bond_vocab_label_save_path\t",
                 self.bond_vocab_label_save_path,
@@ -248,7 +242,6 @@ class MoleculeDataset_Contextual(InMemoryDataset):
 
 
 if __name__ == "__main__":
-
     dataset = "GEOM_2D_nmol50000_nconf1_nupper1000"
     root = join("../../data", dataset)
     dataset = MoleculeDataset_Contextual(root, dataset=dataset)

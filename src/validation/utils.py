@@ -12,7 +12,6 @@ from splitters import random_scaffold_split, random_split, scaffold_split
 def get_dataset_extraction(
     config: Union[TrainingConfig, ValidationConfig]
 ) -> MoleculeDataset:
-
     root: str = f"data/molecule_datasets/{config.dataset}/"
     return MoleculeDataset(root=root, dataset=config.dataset)
 
